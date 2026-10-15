@@ -1,0 +1,3512 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarisa Pattarakamonporn | Retro Tech Portfolio (IT & Content Creator)</title>
+    <meta name="description"
+        content="Personal Portfolio of Sarisa Pattarakamonporn (นางสาว สาริศา ภัทรกมลภรณ์) - Content Creator & IT Student at Sripatum University (SPU). Retro Tech & Pixelated Windows 98 aesthetic.">
+    <meta name="keywords"
+        content="Sarisa Pattarakamonporn, สาริศา ภัทรกมลภรณ์, Portfolio, IT Student, SPU, Content Creator, Retro Tech, Windows 98, Pixel UI">
+
+    <!-- Google Fonts: VT323 & Silkscreen for Retro UI, IBM Plex Sans Thai & Prompt for crisp Thai typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&family=VT323&family=Prompt:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+   SARISA PATTARAKAMONPORN - RETRO TECH / WINDOWS 98 PORTFOLIO STYLESHEET
+   Aesthetics: Windows 95/98 OS, Pixelated Accents, Royal Blue, Silver, Mint Green
+   ========================================================================== */
+
+        /* --- CSS Variables & Design Tokens --- */
+        :root {
+            /* Classic Win98 Colors */
+            --win-bg: #c0c0c0;
+            --win-bg-light: #ece9d8;
+            --win-light: #ffffff;
+            --win-shadow-light: #dfdfdf;
+            --win-shadow-dark: #808080;
+            --win-shadow-black: #000000;
+
+            /* Brand Retro Palettes (Blue, Navy, Mint Green) */
+            --titlebar-active-start: #000080;
+            --titlebar-active-end: #1084d0;
+            --titlebar-inactive-start: #7b7d7d;
+            --titlebar-inactive-end: #b4b5b5;
+            --accent-green: #20c997;
+            --accent-green-bright: #1dc299;
+            --accent-green-dark: #0f7a5f;
+            --accent-gold: #ffbe0b;
+            --accent-navy: #002244;
+
+            /* Desktop Background */
+            --desktop-color: #008080;
+            --desktop-grid-line: rgba(0, 0, 0, 0.08);
+
+            /* Fonts */
+            --font-retro-heading: 'Silkscreen', 'VT323', monospace;
+            --font-retro-code: 'VT323', monospace;
+            --font-thai-body: 'IBM Plex Sans Thai', 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        /* Reset & Box Sizing */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: var(--font-thai-body);
+            font-size: 14px;
+            color: #222222;
+            user-select: none;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Retro Desktop Screen --- */
+        .desktop-environment {
+            background-color: var(--desktop-color);
+            background-image:
+                radial-gradient(circle at 50% 50%, rgba(32, 201, 151, 0.15) 0%, transparent 60%),
+                linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+            background-size: 100% 100%, 20px 20px, 20px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .desktop-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 38px;
+            /* space for taskbar */
+            overflow: hidden;
+        }
+
+        /* CRT Scanline Effect (Toggleable) */
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 99999;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+                    rgba(0, 0, 0, 0.18) 50%), linear-gradient(90deg,
+                    rgba(255, 0, 0, 0.02),
+                    rgba(0, 255, 0, 0.01),
+                    rgba(0, 0, 255, 0.02));
+            background-size: 100% 3px, 6px 100%;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .crt-overlay.active {
+            display: block;
+        }
+
+        /* --- Desktop Watermark --- */
+        .desktop-watermark {
+            position: absolute;
+            bottom: 20px;
+            right: 24px;
+            text-align: right;
+            opacity: 0.75;
+            pointer-events: none;
+        }
+
+        .pixel-badge {
+            font-family: var(--font-retro-heading);
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8), 0 0 10px rgba(32, 201, 151, 0.6);
+            letter-spacing: 1px;
+        }
+
+        .watermark-sub {
+            font-family: var(--font-retro-code);
+            font-size: 18px;
+            color: #bbfce8;
+            text-shadow: 1px 1px 0 #000;
+            letter-spacing: 1.5px;
+        }
+
+        /* --- Desktop Icons Grid --- */
+        .desktop-icons {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: grid;
+            grid-template-columns: 80px;
+            grid-auto-rows: 88px;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .desktop-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 4px;
+            cursor: pointer;
+            border: 1px dotted transparent;
+            border-radius: 2px;
+            text-align: center;
+            transition: transform 0.1s ease;
+        }
+
+        .desktop-icon:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .desktop-icon:focus,
+        .desktop-icon.selected {
+            background-color: rgba(0, 0, 128, 0.65);
+            border: 1px dotted #ffffff;
+            outline: none;
+        }
+
+        .desktop-icon:active {
+            transform: translateY(1px);
+        }
+
+        .icon-img {
+            width: 36px;
+            height: 36px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.6));
+        }
+
+        .icon-pc::after {
+            content: "💻";
+        }
+
+        .icon-user::after {
+            content: "👤";
+        }
+
+        .icon-certificate::after {
+            content: "🎓";
+        }
+
+        .icon-gears::after {
+            content: "⚙️";
+        }
+
+        .icon-briefcase::after {
+            content: "💼";
+        }
+
+        .icon-mail::after {
+            content: "✉️";
+        }
+
+        .icon-monitor::after {
+            content: "📺";
+        }
+
+        .icon-speaker::after {
+            content: "🔊";
+        }
+
+        .icon-label {
+            font-family: var(--font-retro-heading);
+            font-size: 11px;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px #000000, 0px 0px 4px #000000;
+            line-height: 1.2;
+            word-break: break-word;
+            max-width: 76px;
+        }
+
+        /* --- Retro Window (Windows 95/98 Frame) --- */
+        .retro-window {
+            position: absolute;
+            background-color: var(--win-bg);
+            border-top: 2px solid var(--win-light);
+            border-left: 2px solid var(--win-light);
+            border-right: 2px solid var(--win-shadow-black);
+            border-bottom: 2px solid var(--win-shadow-black);
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.35);
+            padding: 3px;
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+            max-height: calc(100vh - 65px);
+            max-width: 96vw;
+            user-select: auto;
+        }
+
+        .retro-window.active {
+            display: flex;
+        }
+
+        .retro-window.focused {
+            z-index: 150;
+            box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.45);
+        }
+
+        /* Window Titlebar */
+        .window-titlebar {
+            background: linear-gradient(90deg, var(--titlebar-active-start), var(--titlebar-active-end));
+            color: #ffffff;
+            padding: 4px 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: grab;
+            font-family: var(--font-retro-heading);
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--win-shadow-dark);
+        }
+
+        .retro-window:not(.focused) .window-titlebar {
+            background: linear-gradient(90deg, var(--titlebar-inactive-start), var(--titlebar-inactive-end));
+            color: #d1d1d1;
+        }
+
+        .window-titlebar:active {
+            cursor: grabbing;
+        }
+
+        .titlebar-text {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 700;
+        }
+
+        .title-icon {
+            font-size: 14px;
+        }
+
+        .titlebar-controls {
+            display: flex;
+            gap: 3px;
+        }
+
+        /* Classic Win98 Titlebar Buttons */
+        .win-btn {
+            background: var(--win-bg);
+            border-top: 1px solid var(--win-light);
+            border-left: 1px solid var(--win-light);
+            border-right: 1px solid var(--win-shadow-black);
+            border-bottom: 1px solid var(--win-shadow-black);
+            font-family: var(--font-retro-code);
+            font-weight: 900;
+            font-size: 13px;
+            line-height: 1;
+            width: 18px;
+            height: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #000000;
+        }
+
+        .win-btn:active {
+            border-top: 1px solid var(--win-shadow-black);
+            border-left: 1px solid var(--win-shadow-black);
+            border-right: 1px solid var(--win-light);
+            border-bottom: 1px solid var(--win-light);
+            padding: 1px 0 0 1px;
+        }
+
+        .win-btn-close {
+            font-size: 11px;
+        }
+
+        /* Window Menu Bar */
+        .window-menubar {
+            background-color: var(--win-bg);
+            padding: 3px 6px;
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+            border-bottom: 1px solid var(--win-shadow-dark);
+        }
+
+        .menu-item {
+            cursor: pointer;
+            padding: 1px 4px;
+        }
+
+        .menu-item:hover {
+            background-color: #000080;
+            color: #ffffff;
+        }
+
+        .menu-item.active-tab,
+        .menu-item.active-skill-filter {
+            background-color: #000080;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* Window Body */
+        .window-body {
+            background-color: var(--win-bg-light);
+            border-top: 2px solid var(--win-shadow-dark);
+            border-left: 2px solid var(--win-shadow-dark);
+            border-right: 2px solid var(--win-light);
+            border-bottom: 2px solid var(--win-light);
+            padding: 14px;
+            overflow-y: auto;
+            flex: 1;
+            max-height: calc(100vh - 160px);
+        }
+
+        /* Window Status Bar */
+        .window-statusbar {
+            display: flex;
+            gap: 4px;
+            padding-top: 3px;
+            font-size: 11px;
+            font-family: var(--font-retro-code);
+            font-size: 13px;
+        }
+
+        .status-section {
+            background-color: var(--win-bg);
+            border-top: 1px solid var(--win-shadow-dark);
+            border-left: 1px solid var(--win-shadow-dark);
+            border-right: 1px solid var(--win-light);
+            border-bottom: 1px solid var(--win-light);
+            padding: 2px 6px;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* --- Win95/98 Standard Buttons --- */
+        .win95-btn {
+            background: var(--win-bg);
+            border-top: 2px solid var(--win-light);
+            border-left: 2px solid var(--win-light);
+            border-right: 2px solid var(--win-shadow-black);
+            border-bottom: 2px solid var(--win-shadow-black);
+            font-family: var(--font-thai-body);
+            font-weight: 600;
+            font-size: 13px;
+            color: #000000;
+            padding: 6px 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .win95-btn:active {
+            border-top: 2px solid var(--win-shadow-black);
+            border-left: 2px solid var(--win-shadow-black);
+            border-right: 2px solid var(--win-light);
+            border-bottom: 2px solid var(--win-light);
+            padding: 7px 13px 5px 15px;
+        }
+
+        .win95-btn.primary-btn {
+            background: linear-gradient(180deg, #1084d0 0%, #000080 100%);
+            color: #ffffff;
+            text-shadow: 1px 1px 0 #000;
+            font-weight: 700;
+        }
+
+        .win95-btn.primary-btn:hover {
+            background: linear-gradient(180deg, #1c94e4 0%, #002299 100%);
+        }
+
+        .win95-btn-large {
+            padding: 8px 18px;
+            font-size: 14px;
+        }
+
+        .btn-sm {
+            font-size: 11px;
+            padding: 3px 8px;
+        }
+
+        /* --- Retro Badges & Tags --- */
+        .pixel-tag {
+            font-family: var(--font-retro-heading);
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 1px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-blue {
+            background-color: #000080;
+            color: #ffffff;
+            border: 1px solid #002244;
+        }
+
+        .tag-green {
+            background-color: var(--accent-green-dark);
+            color: #bbfce8;
+            border: 1px solid var(--accent-green);
+        }
+
+        .tag-silver {
+            background-color: #555555;
+            color: #ffffff;
+        }
+
+        /* ==========================================================================
+   PAGE 1: HERO / PORTFOLIO INTRO CONTENT
+   ========================================================================== */
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .hero-top-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dashed #808080;
+            padding-bottom: 8px;
+        }
+
+        .retro-badge-group {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .hero-version {
+            font-family: var(--font-retro-code);
+            font-size: 16px;
+            font-weight: 700;
+            color: #000080;
+            background: #ffe066;
+            padding: 1px 8px;
+            border: 1px solid #000;
+        }
+
+        .hero-headline-box {
+            background: linear-gradient(135deg, #001f3f 0%, #003366 50%, #0a4b78 100%);
+            color: #ffffff;
+            padding: 20px;
+            border-top: 2px solid var(--win-shadow-dark);
+            border-left: 2px solid var(--win-shadow-dark);
+            border-right: 2px solid var(--win-light);
+            border-bottom: 2px solid var(--win-light);
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-headline-box::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(32, 201, 151, 0.04) 10px,
+                    rgba(32, 201, 151, 0.04) 20px);
+            pointer-events: none;
+        }
+
+        .hero-main-title {
+            font-family: var(--font-retro-heading);
+            font-size: 38px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-shadow: 3px 3px 0px #000000, 0 0 12px rgba(32, 201, 151, 0.7);
+            margin-bottom: 6px;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-thai-body);
+            font-size: 15px;
+            font-weight: 500;
+            color: #a8e6cf;
+            text-shadow: 1px 1px 0px #000;
+        }
+
+        /* Retro Command Prompt / Terminal */
+        .hero-terminal-box {
+            background: #000000;
+            color: #33ff33;
+            font-family: var(--font-retro-code);
+            font-size: 17px;
+            padding: 12px 14px;
+            border-top: 2px solid #555;
+            border-left: 2px solid #555;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.8);
+            line-height: 1.4;
+        }
+
+        .terminal-header {
+            border-bottom: 1px solid #333;
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+            color: #aaa;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .terminal-dot {
+            width: 8px;
+            height: 8px;
+            background: #33ff33;
+            display: inline-block;
+            box-shadow: 0 0 6px #33ff33;
+        }
+
+        .term-prompt {
+            color: #ffe066;
+        }
+
+        .term-output {
+            color: #ffffff;
+            padding-left: 10px;
+        }
+
+        .term-output.accent-text {
+            color: #66d9ef;
+            font-style: italic;
+        }
+
+        .term-output.green-text {
+            color: #20c997;
+            font-weight: 700;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 6px 0;
+        }
+
+        /* ==========================================================================
+   PAGE 2 & 3: ABOUT ME / PROFILE SECTION
+   ========================================================================== */
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 210px 1fr;
+            gap: 16px;
+        }
+
+        .profile-left-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .retro-inner-frame {
+            background-color: var(--win-bg);
+            border-top: 2px solid var(--win-shadow-dark);
+            border-left: 2px solid var(--win-shadow-dark);
+            border-right: 2px solid var(--win-light);
+            border-bottom: 2px solid var(--win-light);
+            padding: 4px;
+        }
+
+        .inner-frame-header {
+            background: #000080;
+            color: #fff;
+            font-family: var(--font-retro-heading);
+            font-size: 10px;
+            padding: 2px 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .photo-badge {
+            background: var(--accent-green);
+            color: #000;
+            font-size: 8px;
+            padding: 1px 3px;
+            font-weight: 700;
+        }
+
+        .profile-avatar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #254878;
+            border: 1px solid #000;
+            padding: 6px;
+        }
+
+        .pixel-avatar-art {
+            width: 160px;
+            height: 160px;
+            background-color: #1e3a5f;
+            image-rendering: pixelated;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid #111;
+        }
+
+        .svg-avatar {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .avatar-controls {
+            margin-top: 6px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Group Box (Fieldset Aesthetic) */
+        .retro-group-box {
+            border: 2px groove var(--win-light);
+            padding: 8px 10px;
+            font-size: 12px;
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .retro-group-box legend {
+            font-family: var(--font-retro-heading);
+            font-size: 11px;
+            color: #000080;
+            font-weight: 700;
+            padding: 0 4px;
+        }
+
+        .stat-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            font-size: 12px;
+        }
+
+        .stat-lbl {
+            color: #555;
+            font-weight: 600;
+        }
+
+        .stat-val {
+            font-weight: 600;
+            color: #000;
+        }
+
+        .stat-val.green {
+            color: var(--accent-green-dark);
+            font-weight: 700;
+        }
+
+        .stat-val.bold-gold {
+            color: #b27b00;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* Profile Right Column */
+        .profile-right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .profile-header-meta {
+            border-bottom: 2px groove var(--win-light);
+            padding-bottom: 8px;
+        }
+
+        .profile-name {
+            font-family: var(--font-thai-body);
+            font-size: 22px;
+            font-weight: 700;
+            color: #002244;
+            line-height: 1.2;
+        }
+
+        .profile-english-name {
+            font-family: var(--font-retro-heading);
+            font-size: 13px;
+            color: #000080;
+            margin-top: 2px;
+        }
+
+        .profile-pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #e1f5fe;
+            border: 1px solid #81d4fa;
+            color: #0277bd;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 3px 8px;
+            margin-top: 6px;
+            border-radius: 2px;
+        }
+
+        .dot-live {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            display: inline-block;
+            box-shadow: 0 0 6px var(--accent-green);
+        }
+
+        .profile-quote {
+            font-style: italic;
+            font-weight: 500;
+            color: #0f7a5f;
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        .profile-tab-content {
+            display: none;
+        }
+
+        .profile-tab-content.active {
+            display: block;
+        }
+
+        .retro-text-box {
+            background: #ffffff;
+            border-top: 2px solid var(--win-shadow-dark);
+            border-left: 2px solid var(--win-shadow-dark);
+            border-right: 2px solid var(--win-light);
+            border-bottom: 2px solid var(--win-light);
+            padding: 12px;
+            line-height: 1.6;
+        }
+
+        .box-title {
+            font-family: var(--font-thai-body);
+            font-size: 14px;
+            font-weight: 700;
+            color: #000080;
+            margin-bottom: 8px;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 4px;
+        }
+
+        .bio-paragraph {
+            margin-bottom: 8px;
+            font-size: 13.5px;
+            color: #333333;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .c-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 6px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+        }
+
+        .c-icon {
+            font-size: 20px;
+        }
+
+        .retro-link {
+            color: #000080;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .retro-link:hover {
+            color: #1084d0;
+            background: #eef5ff;
+        }
+
+        .profile-footer-nav {
+            display: flex;
+            gap: 8px;
+            margin-top: 4px;
+            flex-wrap: wrap;
+        }
+
+        /* ==========================================================================
+   PAGE 4: EDUCATION HISTORY SECTION
+   ========================================================================== */
+        .edu-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .edu-header {
+            border-bottom: 2px groove var(--win-light);
+            padding-bottom: 8px;
+        }
+
+        .edu-main-title {
+            font-family: var(--font-retro-heading);
+            font-size: 16px;
+            color: #000080;
+            font-weight: 700;
+        }
+
+        .edu-desc {
+            font-size: 13px;
+            color: #555;
+            margin-top: 2px;
+        }
+
+        /* Retro Timeline */
+        .retro-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding-left: 6px;
+        }
+
+        .timeline-row {
+            display: grid;
+            grid-template-columns: 32px 1fr;
+            gap: 12px;
+            position: relative;
+        }
+
+        .timeline-badge-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pixel-node-icon {
+            width: 28px;
+            height: 28px;
+            background: #000080;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            border: 2px solid #ffffff;
+            box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+            z-index: 2;
+        }
+
+        .pixel-node-icon.current {
+            background: #ffe066;
+            color: #000000;
+            border-color: #000080;
+            animation: pulse-node 1.5s infinite alternate;
+        }
+
+        @keyframes pulse-node {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 2px #ffe066;
+            }
+
+            100% {
+                transform: scale(1.08);
+                box-shadow: 0 0 10px #ffe066;
+            }
+        }
+
+        .timeline-line {
+            width: 3px;
+            background: repeating-linear-gradient(180deg,
+                    #000080,
+                    #000080 4px,
+                    transparent 4px,
+                    transparent 8px);
+            flex: 1;
+            margin-top: 4px;
+        }
+
+        .timeline-card {
+            background: #ffffff;
+            border-top: 2px solid var(--win-shadow-dark);
+            border-left: 2px solid var(--win-shadow-dark);
+            border-right: 2px solid var(--win-light);
+            border-bottom: 2px solid var(--win-light);
+            padding: 10px 14px;
+        }
+
+        .timeline-row.current-stage .timeline-card {
+            border-top: 2px solid #000080;
+            border-left: 2px solid #000080;
+            background: #fbfdff;
+        }
+
+        .card-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .year-chip {
+            font-family: var(--font-retro-heading);
+            font-size: 11px;
+            background: #000080;
+            color: #ffffff;
+            padding: 2px 8px;
+            font-weight: 700;
+        }
+
+        .status-chip {
+            font-size: 11px;
+            background: #e0e0e0;
+            padding: 2px 6px;
+            border: 1px solid #999;
+        }
+
+        .status-chip.active-chip {
+            background: #20c997;
+            color: #002244;
+            font-weight: 700;
+            border-color: #0f7a5f;
+        }
+
+        .inst-title {
+            font-size: 16px;
+            color: #002244;
+            font-weight: 700;
+        }
+
+        .inst-dept {
+            font-size: 13.5px;
+            color: #000080;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .inst-gpa {
+            font-size: 13px;
+            margin-top: 3px;
+        }
+
+        .gold-text {
+            color: #b27b00;
+            background: #fff8d6;
+            padding: 0 4px;
+            border: 1px solid #ffd166;
+        }
+
+        .inst-notes {
+            margin-top: 6px;
+            font-size: 12.5px;
+            color: #555555;
+            line-height: 1.4;
+            border-top: 1px dashed #e0e0e0;
+            padding-top: 4px;
+        }
+
+        /* ==========================================================================
+   PAGE 5: MY SKILLS SECTION
+   ========================================================================== */
+        .skills-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .skills-intro-bar {
+            background: #000080;
+            color: #ffffff;
+            padding: 4px 8px;
+            font-family: var(--font-retro-heading);
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pixel-clock-badge {
+            background: #20c997;
+            color: #000;
+            padding: 1px 4px;
+            font-weight: 700;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .skill-win-card {
+            background: var(--win-bg);
+            border-top: 2px solid var(--win-light);
+            border-left: 2px solid var(--win-light);
+            border-right: 2px solid var(--win-shadow-black);
+            border-bottom: 2px solid var(--win-shadow-black);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .card-inner-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-retro-heading);
+            font-size: 12px;
+            color: #000080;
+            border-bottom: 1px solid var(--win-shadow-dark);
+            padding-bottom: 4px;
+        }
+
+        .card-icon {
+            font-size: 16px;
+        }
+
+        .card-th-label {
+            font-size: 12px;
+            color: #444;
+            font-weight: 500;
+        }
+
+        .skill-meter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: #ffffff;
+            border-top: 2px solid var(--win-shadow-dark);
+            border-left: 2px solid var(--win-shadow-dark);
+            border-right: 2px solid var(--win-light);
+            border-bottom: 2px solid var(--win-light);
+            padding: 8px;
+        }
+
+        .meter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .meter-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11.5px;
+            font-weight: 600;
+        }
+
+        .meter-pct {
+            font-family: var(--font-retro-code);
+            font-size: 14px;
+            color: #000080;
+        }
+
+        /* 8-bit Segmented Progress Bar */
+        .retro-progress-track {
+            height: 14px;
+            background-color: #e0e0e0;
+            border: 1px solid #777;
+            box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .retro-progress-fill {
+            height: 100%;
+            background: repeating-linear-gradient(90deg,
+                    #000080,
+                    #000080 8px,
+                    #ffffff 8px,
+                    #ffffff 10px);
+            box-shadow: 0 0 5px rgba(0, 0, 128, 0.4);
+        }
+
+        .skill-win-card[data-category="creative"] .retro-progress-fill {
+            background: repeating-linear-gradient(90deg,
+                    #20c997,
+                    #20c997 8px,
+                    #ffffff 8px,
+                    #ffffff 10px);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .s-tag {
+            background: #ece9d8;
+            border: 1px solid #999;
+            font-size: 10.5px;
+            padding: 1px 5px;
+            color: #222;
+        }
+
+        /* ==========================================================================
+   PAGE 6: PRACTICAL EXPERIENCE SECTION
+   ========================================================================== */
+        .exp-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .exp-header-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px groove var(--win-light);
+            padding-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .exp-title {
+            font-family: var(--font-retro-heading);
+            font-size: 15px;
+            color: #000080;
+            font-weight: 700;
+        }
+
+        .exp-badge-row {
+            display: flex;
+            gap: 6px;
+        }
+
+        .exp-card-main {
+            background: #ffffff;
+            border-top: 2px solid var(--win-shadow-dark);
+            border-left: 2px solid var(--win-shadow-dark);
+            border-right: 2px solid var(--win-light);
+            border-bottom: 2px solid var(--win-light);
+            padding: 14px;
+        }
+
+        .exp-meta-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f0f4f8;
+            border: 1px solid #d0d7de;
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+
+        .exp-org-icon {
+            font-size: 32px;
+        }
+
+        .exp-org-name {
+            font-size: 16px;
+            color: #002244;
+            font-weight: 700;
+        }
+
+        .exp-pos-tag {
+            font-size: 13.5px;
+            color: #000080;
+            margin-top: 2px;
+        }
+
+        .exp-year {
+            background: #ffe066;
+            color: #000;
+            padding: 1px 6px;
+            font-family: var(--font-retro-heading);
+            font-size: 11px;
+            margin-left: 6px;
+            border: 1px solid #000;
+        }
+
+        .duty-heading {
+            font-weight: 700;
+            color: #000080;
+            margin-bottom: 10px;
+            font-size: 13.5px;
+        }
+
+        .duty-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .duty-item {
+            display: flex;
+            gap: 12px;
+            background: #fafbfc;
+            border: 1px solid #e1e4e8;
+            padding: 10px;
+        }
+
+        .duty-icon {
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .duty-text strong {
+            display: block;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+            font-size: 13px;
+        }
+
+        .duty-text p {
+            color: #555555;
+            font-size: 12.5px;
+            line-height: 1.4;
+        }
+
+        .retro-quote-box {
+            margin-top: 14px;
+            background: #eef9f5;
+            border-left: 4px solid var(--accent-green);
+            padding: 10px 12px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 12.5px;
+            color: #0f7a5f;
+        }
+
+        .quote-bulb {
+            font-size: 20px;
+        }
+
+        /* ==========================================================================
+   PAGE 7: CALL TO ACTION / LET'S WORK TOGETHER
+   ========================================================================== */
+        .cta-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cta-header {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .cta-pixel-art {
+            flex-shrink: 0;
+        }
+
+        .cta-main-title {
+            font-family: var(--font-retro-heading);
+            font-size: 20px;
+            color: #000080;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-sub {
+            font-size: 13px;
+            color: #444;
+            margin-top: 2px;
+        }
+
+        .cta-brand {
+            font-family: var(--font-retro-heading);
+            font-size: 11px;
+            color: #0f7a5f;
+            margin-top: 4px;
+        }
+
+        .retro-divider {
+            height: 2px;
+            background: var(--win-shadow-dark);
+            border-bottom: 1px solid var(--win-light);
+        }
+
+        .retro-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .form-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .retro-input,
+        .retro-select,
+        .retro-textarea {
+            background: #ffffff;
+            border-top: 2px solid var(--win-shadow-dark);
+            border-left: 2px solid var(--win-shadow-dark);
+            border-right: 2px solid var(--win-light);
+            border-bottom: 2px solid var(--win-light);
+            padding: 6px 8px;
+            font-family: var(--font-thai-body);
+            font-size: 13px;
+            color: #000000;
+        }
+
+        .retro-input:focus,
+        .retro-select:focus,
+        .retro-textarea:focus {
+            outline: 1px dotted #000080;
+            background: #fbfdff;
+        }
+
+        .cta-buttons-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .large-cta-btn {
+            font-size: 13.5px;
+            padding: 8px 16px;
+        }
+
+        .btn-check {
+            color: #33ff33;
+        }
+
+        .cta-direct-info {
+            margin-top: 6px;
+            padding-top: 8px;
+            border-top: 1px dashed #aaa;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11.5px;
+            color: #555;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        /* ==========================================================================
+   RETRO MODALS / DIALOGS
+   ========================================================================== */
+        .retro-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-window {
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            display: flex !important;
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        .dialog-content {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            margin-bottom: 14px;
+        }
+
+        .dialog-icon-info {
+            font-size: 32px;
+        }
+
+        .dialog-text h4 {
+            color: #000080;
+            margin-bottom: 4px;
+        }
+
+        .dialog-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        /* ==========================================================================
+   RETRO TASKBAR (BOTTOM)
+   ========================================================================== */
+        .retro-taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 38px;
+            background-color: var(--win-bg);
+            border-top: 2px solid var(--win-light);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            padding: 2px 4px;
+            gap: 4px;
+            z-index: 9000;
+        }
+
+        /* Start Button */
+        .start-btn {
+            height: 30px;
+            background: var(--win-bg);
+            border-top: 2px solid var(--win-light);
+            border-left: 2px solid var(--win-light);
+            border-right: 2px solid var(--win-shadow-black);
+            border-bottom: 2px solid var(--win-shadow-black);
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-family: var(--font-retro-heading);
+            font-size: 13px;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        .start-btn:active,
+        .start-btn.active {
+            border-top: 2px solid var(--win-shadow-black);
+            border-left: 2px solid var(--win-shadow-black);
+            border-right: 2px solid var(--win-light);
+            border-bottom: 2px solid var(--win-light);
+            padding: 1px 7px 0 9px;
+            background: #b5b5b5;
+        }
+
+        .start-flag-icon {
+            display: grid;
+            grid-template-columns: 7px 7px;
+            grid-template-rows: 7px 7px;
+            gap: 1.5px;
+        }
+
+        .sq {
+            width: 7px;
+            height: 7px;
+        }
+
+        .sq-red {
+            background: #e02424;
+        }
+
+        .sq-green {
+            background: #20c997;
+        }
+
+        .sq-blue {
+            background: #0055ff;
+        }
+
+        .sq-yellow {
+            background: #ffcc00;
+        }
+
+        .taskbar-apps {
+            display: flex;
+            gap: 3px;
+            flex: 1;
+            overflow-x: auto;
+            height: 30px;
+        }
+
+        /* Taskbar Windows Tabs */
+        .task-tab {
+            background: var(--win-bg);
+            border-top: 2px solid var(--win-light);
+            border-left: 2px solid var(--win-light);
+            border-right: 2px solid var(--win-shadow-black);
+            border-bottom: 2px solid var(--win-shadow-black);
+            height: 100%;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-thai-body);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            max-width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .task-tab.active {
+            background: #e6e6e6;
+            border-top: 2px solid var(--win-shadow-black);
+            border-left: 2px solid var(--win-shadow-black);
+            border-right: 2px solid var(--win-light);
+            border-bottom: 2px solid var(--win-light);
+            font-weight: 700;
+        }
+
+        .tab-icon {
+            font-size: 13px;
+        }
+
+        .mobile-nav-toggle-btn {
+            display: none;
+            background: var(--win-bg);
+            border-top: 2px solid var(--win-light);
+            border-left: 2px solid var(--win-light);
+            border-right: 2px solid var(--win-shadow-black);
+            border-bottom: 2px solid var(--win-shadow-black);
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* System Tray */
+        .systray {
+            background-color: var(--win-bg);
+            border-top: 1px solid var(--win-shadow-dark);
+            border-left: 1px solid var(--win-shadow-dark);
+            border-right: 1px solid var(--win-light);
+            border-bottom: 1px solid var(--win-light);
+            height: 28px;
+            display: flex;
+            align-items: center;
+            padding: 0 6px;
+            gap: 6px;
+        }
+
+        .tray-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+        }
+
+        .tray-icon:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .tray-emoji {
+            font-size: 14px;
+        }
+
+        .systray-divider {
+            width: 1px;
+            height: 16px;
+            background: var(--win-shadow-dark);
+            border-right: 1px solid var(--win-light);
+        }
+
+        .systray-clock {
+            font-family: var(--font-retro-code);
+            font-size: 14px;
+            font-weight: 700;
+            color: #000000;
+            padding: 0 2px;
+        }
+
+        /* ==========================================================================
+   START MENU
+   ========================================================================== */
+        .start-menu {
+            position: fixed;
+            bottom: 39px;
+            left: 2px;
+            width: 280px;
+            background-color: var(--win-bg);
+            border-top: 2px solid var(--win-light);
+            border-left: 2px solid var(--win-light);
+            border-right: 2px solid var(--win-shadow-black);
+            border-bottom: 2px solid var(--win-shadow-black);
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            z-index: 9500;
+        }
+
+        .start-menu-sidebar {
+            width: 32px;
+            background: linear-gradient(180deg, #000080 0%, #1084d0 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 12px;
+        }
+
+        .sidebar-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            color: #ffffff;
+            font-family: var(--font-retro-heading);
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .sidebar-text span {
+            color: var(--accent-green);
+        }
+
+        .start-menu-items {
+            flex: 1;
+            padding: 4px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .start-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 8px;
+            cursor: pointer;
+        }
+
+        .start-item:hover {
+            background: #000080;
+            color: #ffffff;
+        }
+
+        .start-item:hover small {
+            color: #a8e6cf;
+        }
+
+        .start-item-icon {
+            font-size: 20px;
+        }
+
+        .start-item-info {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .start-item-info strong {
+            font-size: 12px;
+        }
+
+        .start-item-info small {
+            font-size: 10.5px;
+            color: #555;
+        }
+
+        .highlight-item {
+            background: rgba(32, 201, 151, 0.15);
+        }
+
+        .start-menu-divider {
+            height: 1px;
+            background: var(--win-shadow-dark);
+            border-bottom: 1px solid var(--win-light);
+            margin: 4px 0;
+        }
+
+        /* ==========================================================================
+   MOBILE & RESPONSIVE ADAPTATIONS
+   ========================================================================== */
+        @media (max-width: 820px) {
+            .desktop-icons {
+                display: none;
+                /* Mobile switches to Taskbar tabs & Start Menu navigation */
+            }
+
+            .mobile-nav-toggle-btn {
+                display: block;
+            }
+
+            .retro-window {
+                top: 5px !important;
+                left: 4px !important;
+                right: 4px !important;
+                width: auto !important;
+                max-width: calc(100vw - 8px) !important;
+                max-height: calc(100vh - 50px) !important;
+            }
+
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-left-col {
+                align-items: center;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-main-title {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 13px;
+            }
+
+            .taskbar-apps {
+                display: none;
+                /* Use Start menu or mobile nav on small screens */
+            }
+
+            .start-menu {
+                width: calc(100vw - 10px);
+            }
+        }
+    </style>
+</head>
+
+<body class="desktop-environment">
+    <!-- CRT Scanlines Overlay (Toggleable) -->
+    <div id="crt-overlay" class="crt-overlay active"></div>
+
+    <!-- Audio Context synthesized sound controls -->
+    <div id="desktop" class="desktop-screen">
+
+        <!-- Desktop Icons Grid -->
+        <div class="desktop-icons" id="desktopIcons">
+            <div class="desktop-icon" tabindex="0" data-window="window-hero" id="icon-hero">
+                <div class="icon-img icon-pc"></div>
+                <span class="icon-label">Portfolio.exe</span>
+            </div>
+
+            <div class="desktop-icon" tabindex="0" data-window="window-about" id="icon-about">
+                <div class="icon-img icon-user"></div>
+                <span class="icon-label">About_Me.txt</span>
+            </div>
+
+            <div class="desktop-icon" tabindex="0" data-window="window-education" id="icon-education">
+                <div class="icon-img icon-certificate"></div>
+                <span class="icon-label">Education.log</span>
+            </div>
+
+            <div class="desktop-icon" tabindex="0" data-window="window-skills" id="icon-skills">
+                <div class="icon-img icon-gears"></div>
+                <span class="icon-label">Skills.sys</span>
+            </div>
+
+            <div class="desktop-icon" tabindex="0" data-window="window-experience" id="icon-experience">
+                <div class="icon-img icon-briefcase"></div>
+                <span class="icon-label">Experience.doc</span>
+            </div>
+
+            <div class="desktop-icon" tabindex="0" data-window="window-contact" id="icon-contact">
+                <div class="icon-img icon-mail"></div>
+                <span class="icon-label">Contact_Me.lnk</span>
+            </div>
+
+            <div class="desktop-icon" tabindex="0" id="icon-crt-toggle">
+                <div class="icon-img icon-monitor"></div>
+                <span class="icon-label">CRT_Effect.cmd</span>
+            </div>
+
+            <div class="desktop-icon" tabindex="0" id="icon-sound-toggle">
+                <div class="icon-img icon-speaker"></div>
+                <span class="icon-label">Audio_FX.dll</span>
+            </div>
+        </div>
+
+        <!-- Retro Desktop Watermark / Brand Badge -->
+        <div class="desktop-watermark">
+            <div class="pixel-badge">SARISA OS // v98.26</div>
+            <div class="watermark-sub">SPU IT • CONTENT CREATOR</div>
+        </div>
+
+        <!-- WINDOW 1: HERO / PORTFOLIO INTRO (Page 1) -->
+        <div class="retro-window active" id="window-hero" style="top: 35px; left: 160px; width: 620px;">
+            <div class="window-titlebar" id="window-hero-titlebar">
+                <div class="titlebar-text">
+                    <span class="title-icon">💻</span>
+                    <span class="title-title">C:\PORTFOLIO\Main_Intro.exe</span>
+                </div>
+                <div class="titlebar-controls">
+                    <button class="win-btn win-btn-min" title="Minimize" aria-label="Minimize">_</button>
+                    <button class="win-btn win-btn-max" title="Maximize" aria-label="Maximize">□</button>
+                    <button class="win-btn win-btn-close" title="Close" aria-label="Close">✕</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span class="menu-item"><u>F</u>ile</span>
+                <span class="menu-item"><u>E</u>dit</span>
+                <span class="menu-item"><u>V</u>iew</span>
+                <span class="menu-item" id="menu-help-btn"><u>H</u>elp</span>
+            </div>
+            <div class="window-body">
+                <div class="hero-container">
+                    <div class="hero-top-banner">
+                        <div class="retro-badge-group">
+                            <span class="pixel-tag tag-blue">SYSTEM ACTIVE</span>
+                            <span class="pixel-tag tag-green">READY TO WORK</span>
+                            <span class="pixel-tag tag-silver">BANGKOK, TH</span>
+                        </div>
+                        <div class="hero-version">VER 3.66_GPA</div>
+                    </div>
+
+                    <div class="hero-headline-box">
+                        <h1 class="hero-main-title">PORTFOLIO</h1>
+                        <p class="hero-subtitle">Content Creator | Selected Work and Collaborations</p>
+                    </div>
+
+                    <div class="hero-terminal-box">
+                        <div class="terminal-header">
+                            <span class="terminal-dot"></span> Sarisa_Command_Prompt
+                        </div>
+                        <div class="terminal-content">
+                            <p><span class="term-prompt">C:\SARISA&gt;</span> whoami</p>
+                            <p class="term-output">&gt;&gt; Sarisa Pattarakamonporn (นางสาว สาริศา ภัทรกมลภรณ์)</p>
+                            <p><span class="term-prompt">C:\SARISA&gt;</span> cat tagline.txt</p>
+                            <p class="term-output accent-text">&gt;&gt; Lifestyle | Tech | Food — &ldquo;I make everyday
+                                moments worth sharing.&rdquo;</p>
+                            <p><span class="term-prompt">C:\SARISA&gt;</span> status</p>
+                            <p class="term-output green-text">&gt;&gt; IT Student (3rd Year) @ SPU Bangkhen | Open for
+                                collaborations!</p>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <button class="win95-btn win95-btn-large primary-btn" id="btn-hero-start">
+                            <span class="btn-icon">▶</span> [Start Exploring]
+                        </button>
+                        <button class="win95-btn win95-btn-large" id="btn-hero-profile">
+                            <span class="btn-icon">👤</span> About Sarisa
+                        </button>
+                        <button class="win95-btn win95-btn-large" id="btn-hero-contact">
+                            <span class="btn-icon">✉️</span> Let's Work Together
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="window-statusbar">
+                <span class="status-section">Status: Ready</span>
+                <span class="status-section">Type: Interactive Win32 App</span>
+                <span class="status-section">Press [Start] below or icons to navigate</span>
+            </div>
+        </div>
+
+        <!-- WINDOW 2 & 3: ABOUT ME / PROFILE SECTION (Page 2 & 3) -->
+        <div class="retro-window" id="window-about" style="top: 70px; left: 240px; width: 680px;">
+            <div class="window-titlebar" id="window-about-titlebar">
+                <div class="titlebar-text">
+                    <span class="title-icon">👤</span>
+                    <span class="title-title">Profile.exe - นางสาว สาริศา ภัทรกมลภรณ์</span>
+                </div>
+                <div class="titlebar-controls">
+                    <button class="win-btn win-btn-min" title="Minimize" aria-label="Minimize">_</button>
+                    <button class="win-btn win-btn-max" title="Maximize" aria-label="Maximize">□</button>
+                    <button class="win-btn win-btn-close" title="Close" aria-label="Close">✕</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span class="menu-item active-tab" data-tab="tab-th">🇹🇭 ภาษาไทย (Thai)</span>
+                <span class="menu-item" data-tab="tab-en">🇬🇧 English</span>
+                <span class="menu-item" data-tab="tab-contact">📇 Contact Card</span>
+            </div>
+            <div class="window-body">
+                <div class="profile-layout">
+                    <!-- Left Column: Photo Window & Fast Stats -->
+                    <div class="profile-left-col">
+                        <div class="retro-inner-frame">
+                            <div class="inner-frame-header">
+                                <span>PHOTO_ID.BMP</span>
+                                <span class="photo-badge">VERIFIED</span>
+                            </div>
+                            <div class="profile-avatar-container">
+                                <!-- Retro Pixel Art Vector Portrait -->
+                                <div class="pixel-avatar-art" id="avatarDisplay">
+                                    <svg viewBox="0 0 120 120" class="svg-avatar" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="120" height="120" fill="#254878" />
+                                        <!-- Background Grid -->
+                                        <defs>
+                                            <pattern id="pixelGrid" width="6" height="6" patternUnits="userSpaceOnUse">
+                                                <path d="M 6 0 L 0 0 0 6" fill="none" stroke="#315d96"
+                                                    stroke-width="0.8" />
+                                            </pattern>
+                                        </defs>
+                                        <rect width="120" height="120" fill="url(#pixelGrid)" />
+
+                                        <!-- Pixel Headphone Band -->
+                                        <rect x="36" y="22" width="48" height="6" fill="#1dc299" />
+                                        <rect x="30" y="28" width="6" height="18" fill="#1dc299" />
+                                        <rect x="84" y="28" width="6" height="18" fill="#1dc299" />
+                                        <rect x="24" y="44" width="12" height="20" fill="#20c997" />
+                                        <rect x="84" y="44" width="12" height="20" fill="#20c997" />
+
+                                        <!-- Hair Back -->
+                                        <rect x="36" y="28" width="48" height="36" fill="#182333" />
+                                        <rect x="30" y="44" width="60" height="32" fill="#182333" />
+
+                                        <!-- Face Skin -->
+                                        <rect x="40" y="38" width="40" height="42" fill="#fde5d2" />
+                                        <rect x="36" y="46" width="4" height="20" fill="#fde5d2" />
+                                        <rect x="80" y="46" width="4" height="20" fill="#fde5d2" />
+
+                                        <!-- Hair Bangs / Front -->
+                                        <rect x="36" y="32" width="48" height="14" fill="#24334a" />
+                                        <rect x="42" y="44" width="10" height="8" fill="#24334a" />
+                                        <rect x="68" y="44" width="10" height="8" fill="#24334a" />
+
+                                        <!-- Eyes & Cheeks -->
+                                        <rect x="46" y="52" width="6" height="8" fill="#182333" />
+                                        <rect x="48" y="52" width="2" height="4" fill="#ffffff" />
+                                        <rect x="68" y="52" width="6" height="8" fill="#182333" />
+                                        <rect x="70" y="52" width="2" height="4" fill="#ffffff" />
+                                        <!-- Blush -->
+                                        <rect x="42" y="60" width="6" height="4" fill="#f8a5a5" />
+                                        <rect x="72" y="60" width="6" height="4" fill="#f8a5a5" />
+                                        <!-- Smile -->
+                                        <rect x="56" y="64" width="8" height="3" fill="#cf4a65" />
+
+                                        <!-- Clothes / Jacket with Green Accents -->
+                                        <rect x="34" y="80" width="52" height="40" fill="#003366" />
+                                        <rect x="48" y="80" width="24" height="40" fill="#ffffff" />
+                                        <rect x="42" y="82" width="6" height="38" fill="#20c997" />
+                                        <rect x="72" y="82" width="6" height="38" fill="#20c997" />
+                                        <!-- ID Card Badge -->
+                                        <rect x="54" y="92" width="12" height="16" fill="#ffe066" stroke="#000"
+                                            stroke-width="1" />
+                                        <rect x="56" y="95" width="8" height="2" fill="#000" />
+                                        <rect x="56" y="99" width="8" height="2" fill="#000" />
+                                    </svg>
+                                </div>
+
+                                <div class="avatar-controls">
+                                    <label for="customPhotoInput" class="win95-btn btn-sm">
+                                        📁 ใส่รูปของคุณ
+                                    </label>
+                                    <input type="file" id="customPhotoInput" accept="image/*" style="display:none;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fast Spec Box -->
+                        <div class="retro-group-box">
+                            <legend>SYSTEM STATS</legend>
+                            <div class="stat-line">
+                                <span class="stat-lbl">STATUS:</span>
+                                <span class="stat-val green">Active / Year 3</span>
+                            </div>
+                            <div class="stat-line">
+                                <span class="stat-lbl">GPA:</span>
+                                <span class="stat-val bold-gold">3.66 ★</span>
+                            </div>
+                            <div class="stat-line">
+                                <span class="stat-lbl">INSTITUTE:</span>
+                                <span class="stat-val">SPU Bangkhen</span>
+                            </div>
+                            <div class="stat-line">
+                                <span class="stat-lbl">SPECIALTY:</span>
+                                <span class="stat-val">Tech &amp; Creator</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Bio & Content -->
+                    <div class="profile-right-col">
+                        <div class="profile-header-meta">
+                            <h2 class="profile-name">นางสาว สาริศา ภัทรกมลภรณ์</h2>
+                            <div class="profile-english-name">Sarisa Pattarakamonporn</div>
+                            <div class="profile-pill-badge">
+                                <span class="dot-live"></span> Lifestyle | Tech | Food
+                            </div>
+                            <blockquote class="profile-quote">
+                                &ldquo;I make everyday moments worth sharing.&rdquo;
+                            </blockquote>
+                        </div>
+
+                        <!-- Tab Content 1: THAI BIO -->
+                        <div class="profile-tab-content active" id="tab-th">
+                            <div class="retro-text-box">
+                                <h3 class="box-title">📝 ข้อมูลแนะนำตัว (Bio)</h3>
+                                <p class="bio-paragraph">
+                                    สวัสดีค่ะ ฉันชื่อ <strong>สาริศา ภัทรกมลภรณ์</strong>
+                                    ฉันเป็นนักศึกษาที่มีความสนใจและหลงใหลในด้าน<strong>เทคโนโลยี คอมพิวเตอร์
+                                        และนวัตกรรมดิจิทัล</strong>
+                                </p>
+                                <p class="bio-paragraph">
+                                    ฉันชอบเรียนรู้สิ่งใหม่ ๆ สนุกกับการคิดวิเคราะห์แก้ปัญหา
+                                    และค้นหาวิธีนำเทคโนโลยีมาประยุกต์ใช้เพื่อพัฒนาชีวิตประจำวันและการทำงานให้มีประสิทธิภาพยิ่งขึ้น
+                                    ควบคู่ไปกับบทบาท <strong>Content Creator</strong>
+                                    ที่พร้อมถ่ายทอดเรื่องราวสร้างสรรค์ทั้งแนว Lifestyle, Tech และ Food
+                                    ให้เข้าถึงผู้คนได้อย่างลงตัวและน่าสนใจ
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content 2: ENGLISH BIO -->
+                        <div class="profile-tab-content" id="tab-en">
+                            <div class="retro-text-box">
+                                <h3 class="box-title">🌐 About Me (English)</h3>
+                                <p class="bio-paragraph">
+                                    Hello! My name is <strong>Sarisa Pattarakamonporn</strong>. I am an enthusiastic
+                                    student deeply interested in <strong>technology, computing, and digital
+                                        innovation</strong>.
+                                </p>
+                                <p class="bio-paragraph">
+                                    I love continuously learning new tools, solving complex problems, and exploring
+                                    practical ways to apply modern digital solutions to enhance everyday living.
+                                    Blending my IT foundation with a passion for content creation across
+                                    <strong>Lifestyle, Tech, and Food</strong>, my mission is to deliver engaging,
+                                    meaningful digital experiences.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content 3: CONTACT CARD -->
+                        <div class="profile-tab-content" id="tab-contact">
+                            <div class="retro-text-box contact-summary-box">
+                                <h3 class="box-title">📇 Contact Information</h3>
+                                <div class="contact-grid">
+                                    <div class="c-item">
+                                        <span class="c-icon">🎓</span>
+                                        <div>
+                                            <strong>การศึกษา:</strong> มหาวิทยาลัยศรีปทุม (SPU)<br>
+                                            <small>คณะเทคโนโลยีสารสนเทศและการสื่อสาร (ปี 3) • GPA: 3.66</small>
+                                        </div>
+                                    </div>
+                                    <div class="c-item">
+                                        <span class="c-icon">📧</span>
+                                        <div>
+                                            <strong>Email:</strong> <a href="mailto:panissara9928@gmail.com"
+                                                class="retro-link">panissara9928@gmail.com</a>
+                                        </div>
+                                    </div>
+                                    <div class="c-item">
+                                        <span class="c-icon">📞</span>
+                                        <div>
+                                            <strong>Phone:</strong> <a href="tel:0993130523"
+                                                class="retro-link">099-313-0523</a>
+                                        </div>
+                                    </div>
+                                    <div class="c-item">
+                                        <span class="c-icon">📍</span>
+                                        <div>
+                                            <strong>Location:</strong> กรุงเทพมหานคร &amp; สุราษฎร์ธานี, ประเทศไทย
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-footer-nav">
+                            <button class="win95-btn" onclick="openWindow('window-education')">View Education ➔</button>
+                            <button class="win95-btn" onclick="openWindow('window-skills')">View Skills ➔</button>
+                            <button class="win95-btn primary-btn" onclick="openWindow('window-contact')">Contact Sarisa
+                                ✉️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="window-statusbar">
+                <span class="status-section">Document: Sarisa_Bio.txt</span>
+                <span class="status-section">Encoding: UTF-8 / Thai TIS-620 Compatible</span>
+                <span class="status-section">100% Ready</span>
+            </div>
+        </div>
+
+        <!-- WINDOW 4: EDUCATION HISTORY (Page 4) -->
+        <div class="retro-window" id="window-education" style="top: 110px; left: 190px; width: 660px;">
+            <div class="window-titlebar" id="window-education-titlebar">
+                <div class="titlebar-text">
+                    <span class="title-icon">🎓</span>
+                    <span class="title-title">Education_History.log - ประวัติการศึกษา</span>
+                </div>
+                <div class="titlebar-controls">
+                    <button class="win-btn win-btn-min" title="Minimize" aria-label="Minimize">_</button>
+                    <button class="win-btn win-btn-max" title="Maximize" aria-label="Maximize">□</button>
+                    <button class="win-btn win-btn-close" title="Close" aria-label="Close">✕</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span class="menu-item"><u>V</u>iew Timeline</span>
+                <span class="menu-item"><u>S</u>ort: Chronological</span>
+                <span class="menu-item"><u>P</u>rint Log</span>
+            </div>
+            <div class="window-body">
+                <div class="edu-container">
+                    <div class="edu-header">
+                        <h2 class="edu-main-title">ประวัติการศึกษา / EDUCATION HISTORY</h2>
+                        <p class="edu-desc">เส้นทางการศึกษาด้านเทคโนโลยีสารสนเทศและคอมพิวเตอร์ธุรกิจ</p>
+                    </div>
+
+                    <!-- Retro Stepper / Timeline -->
+                    <div class="retro-timeline">
+
+                        <!-- Item 1: 2026 SPU -->
+                        <div class="timeline-row current-stage">
+                            <div class="timeline-badge-col">
+                                <div class="pixel-node-icon current">★</div>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-card">
+                                <div class="card-header-bar">
+                                    <span class="year-chip">2026 (ปัจจุบัน)</span>
+                                    <span class="status-chip active-chip">กำลังศึกษา / 3rd Year</span>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="inst-title">มหาวิทยาลัยศรีปทุม บางเขน (SPU)</h3>
+                                    <div class="inst-dept">คณะเทคโนโลยีสารสนเทศ (Information Technology)</div>
+                                    <div class="inst-gpa">เกรดเฉลี่ยสะสม (GPA): <strong class="gold-text">3.66</strong>
+                                    </div>
+                                    <p class="inst-notes">
+                                        มุ่งเน้นการพัฒนาระบบดิจิทัล, การวิเคราะห์ข้อมูล, นวัตกรรมเทคโนโลยีสารสนเทศ
+                                        และการบูรณาการเทคโนโลยีเพื่อการสื่อสารสมัยใหม่
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 2: 2022 - 2024 SVC (High Vocational) -->
+                        <div class="timeline-row">
+                            <div class="timeline-badge-col">
+                                <div class="pixel-node-icon">✔</div>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-card">
+                                <div class="card-header-bar">
+                                    <span class="year-chip">2022 - 2024</span>
+                                    <span class="status-chip">สำเร็จการศึกษา</span>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="inst-title">วิทยาลัยอาชีวศึกษาสุราษฎร์ธานี (SVC)</h3>
+                                    <div class="inst-dept">ประกาศนียบัตรวิชาชีพชั้นสูง (ปวส.) สาขาเทคโนโลยีสารสนเทศ
+                                    </div>
+                                    <p class="inst-notes">
+                                        เรียนรู้พื้นฐานระบบคอมพิวเตอร์, การจัดการฐานข้อมูล, การเขียนโปรแกรม
+                                        และการดูแลเครือข่ายคอมพิวเตอร์
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 3: 2018 - 2021 SVC (Vocational) -->
+                        <div class="timeline-row">
+                            <div class="timeline-badge-col">
+                                <div class="pixel-node-icon">✔</div>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-card">
+                                <div class="card-header-bar">
+                                    <span class="year-chip">2018 - 2021</span>
+                                    <span class="status-chip">สำเร็จการศึกษา</span>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="inst-title">วิทยาลัยอาชีวศึกษาสุราษฎร์ธานี (SVC)</h3>
+                                    <div class="inst-dept">ประกาศนียบัตรวิชาชีพ (ปวช.) สาขาคอมพิวเตอร์ธุรกิจ</div>
+                                    <p class="inst-notes">
+                                        ปูพื้นฐานการประยุกต์ใช้คอมพิวเตอร์ในธุรกิจ, งานเอกสารสารสนเทศ,
+                                        และการวิเคราะห์งานธุรกิจเบื้องต้น
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 4: Early - Middle School -->
+                        <div class="timeline-row">
+                            <div class="timeline-badge-col">
+                                <div class="pixel-node-icon">✔</div>
+                            </div>
+                            <div class="timeline-card">
+                                <div class="card-header-bar">
+                                    <span class="year-chip">Early - Middle School</span>
+                                    <span class="status-chip">สำเร็จการศึกษา</span>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="inst-title">โรงเรียนธิดาแม่พระสุราษฎร์ธานี (Thidamaepra School)</h3>
+                                    <div class="inst-dept">การศึกษาระดับประถมศึกษาและมัธยมศึกษาตอนต้น</div>
+                                    <p class="inst-notes">
+                                        เสริมสร้างรากฐานด้านวิชาการ การสื่อสาร กิจกรรมกลุ่ม และความมีวินัย
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="window-statusbar">
+                <span class="status-section">Total Milestones: 4 Stages</span>
+                <span class="status-section">Latest Degree: SPU IT</span>
+                <span class="status-section">GPA: 3.66</span>
+            </div>
+        </div>
+
+        <!-- WINDOW 5: MY SKILLS (Page 5) -->
+        <div class="retro-window" id="window-skills" style="top: 85px; left: 220px; width: 680px;">
+            <div class="window-titlebar" id="window-skills-titlebar">
+                <div class="titlebar-text">
+                    <span class="title-icon">⚙️</span>
+                    <span class="title-title">Control_Panel\Skills_Manager.cpl</span>
+                </div>
+                <div class="titlebar-controls">
+                    <button class="win-btn win-btn-min" title="Minimize" aria-label="Minimize">_</button>
+                    <button class="win-btn win-btn-max" title="Maximize" aria-label="Maximize">□</button>
+                    <button class="win-btn win-btn-close" title="Close" aria-label="Close">✕</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span class="menu-item active-skill-filter" data-filter="all"><u>A</u>ll Modules (4)</span>
+                <span class="menu-item" data-filter="tech"><u>C</u>omputer</span>
+                <span class="menu-item" data-filter="creative"><u>D</u>esign</span>
+                <span class="menu-item" data-filter="soft"><u>S</u>oft Skills</span>
+            </div>
+            <div class="window-body">
+                <div class="skills-wrapper">
+                    <div class="skills-intro-bar">
+                        <span>MY SKILLS MATRIX // ความเชี่ยวชาญและทักษะความสามารถ</span>
+                        <span class="pixel-clock-badge">SYS_CHECK: OPTIMAL</span>
+                    </div>
+
+                    <div class="skills-grid">
+
+                        <!-- Skill 1: Computer Skills -->
+                        <div class="skill-win-card" data-category="tech">
+                            <div class="card-inner-title">
+                                <span class="card-icon">🖥️</span>
+                                <strong>Computer Skills</strong>
+                            </div>
+                            <div class="card-th-label">การใช้คอมพิวเตอร์และระบบสารสนเทศ</div>
+
+                            <div class="skill-meter-group">
+                                <div class="meter-item">
+                                    <div class="meter-label">
+                                        <span>IT &amp; Office Suite (Excel, Word, Docs)</span>
+                                        <span class="meter-pct">95%</span>
+                                    </div>
+                                    <div class="retro-progress-track">
+                                        <div class="retro-progress-fill" style="width: 95%;"></div>
+                                    </div>
+                                </div>
+                                <div class="meter-item">
+                                    <div class="meter-label">
+                                        <span>Web &amp; Basic Digital Tech (HTML/CSS)</span>
+                                        <span class="meter-pct">88%</span>
+                                    </div>
+                                    <div class="retro-progress-track">
+                                        <div class="retro-progress-fill" style="width: 88%;"></div>
+                                    </div>
+                                </div>
+                                <div class="meter-item">
+                                    <div class="meter-label">
+                                        <span>Data Organizing &amp; Inventory Systems</span>
+                                        <span class="meter-pct">92%</span>
+                                    </div>
+                                    <div class="retro-progress-track">
+                                        <div class="retro-progress-fill" style="width: 92%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="s-tag">MS Office</span>
+                                <span class="s-tag">Google Workspace</span>
+                                <span class="s-tag">Web Maintenance</span>
+                                <span class="s-tag">Data Admin</span>
+                            </div>
+                        </div>
+
+                        <!-- Skill 2: Creative Design -->
+                        <div class="skill-win-card" data-category="creative">
+                            <div class="card-inner-title">
+                                <span class="card-icon">🎨</span>
+                                <strong>Creative Design</strong>
+                            </div>
+                            <div class="card-th-label">ความคิดสร้างสรรค์และการออกแบบ</div>
+
+                            <div class="skill-meter-group">
+                                <div class="meter-item">
+                                    <div class="meter-label">
+                                        <span>Graphic &amp; Social Media Artwork</span>
+                                        <span class="meter-pct">90%</span>
+                                    </div>
+                                    <div class="retro-progress-track">
+                                        <div class="retro-progress-fill" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+                                <div class="meter-item">
+                                    <div class="meter-label">
+                                        <span>Short-Form Video (Reels, TikTok, Shorts)</span>
+                                        <span class="meter-pct">92%</span>
+                                    </div>
+                                    <div class="retro-progress-track">
+                                        <div class="retro-progress-fill" style="width: 92%;"></div>
+                                    </div>
+                                </div>
+                                <div class="meter-item">
+                                    <div class="meter-label">
+                                        <span>Visual Storytelling &amp; Moodboard</span>
+                                        <span class="meter-pct">88%</span>
+                                    </div>
+                                    <div class="retro-progress-track">
+                                        <div class="retro-progress-fill" style="width: 88%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="s-tag">Canva Pro</span>
+                                <span class="s-tag">CapCut</span>
+                                <span class="s-tag">Photoshop Basics</span>
+                                <span class="s-tag">Content Layout</span>
+                            </div>
+                        </div>
+
+                        <!-- Skill 3: Teamwork -->
+                        <div class="skill-win-card" data-category="soft">
+                            <div class="card-inner-title">
+                                <span class="card-icon">🤝</span>
+                                <strong>Teamwork</strong>
+                            </div>
+                            <div class="card-th-label">การทำงานเป็นทีมและการร่วมมือ</div>
+
+                            <div class="skill-meter-group">
+                                <div class="meter-item">
+                                    <div class="meter-label">
+                                        <span>Cross-functional Coordination</span>
+                                        <span class="meter-pct">94%</span>
+                                    </div>
+                                    <div class="retro-progress-track">
+                                        <div class="retro-progress-fill" style="width: 94%;"></div>
+                                    </div>
+                                </div>
+                                <div class="meter-item">
+                                    <div class="meter-label">
+                                        <span>Empathy &amp; Conflict Resolution</span>
+                                        <span class="meter-pct">90%</span>
+                                    </div>
+                                    <div class="retro-progress-track">
+                                        <div class="retro-progress-fill" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+                                <div class="meter-item">
+                                    <div class="meter-label">
+                                        <span>Adaptability &amp; Event Support</span>
+                                        <span class="meter-pct">95%</span>
+                                    </div>
+                                    <div class="retro-progress-track">
+                                        <div class="retro-progress-fill" style="width: 95%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="s-tag">Collaboration</span>
+                                <span class="s-tag">Reliability</span>
+                                <span class="s-tag">Problem Solving</span>
+                            </div>
+                        </div>
+
+                        <!-- Skill 4: Communication -->
+                        <div class="skill-win-card" data-category="soft">
+                            <div class="card-inner-title">
+                                <span class="card-icon">📢</span>
+                                <strong>Communication</strong>
+                            </div>
+                            <div class="card-th-label">การสื่อสารและการนำเสนอ</div>
+
+                            <div class="skill-meter-group">
+                                <div class="meter-item">
+                                    <div class="meter-label">
+                                        <span>Public &amp; Audience Presentation</span>
+                                        <span class="meter-pct">92%</span>
+                                    </div>
+                                    <div class="retro-progress-track">
+                                        <div class="retro-progress-fill" style="width: 92%;"></div>
+                                    </div>
+                                </div>
+                                <div class="meter-item">
+                                    <div class="meter-label">
+                                        <span>Copywriting &amp; Creative Captions</span>
+                                        <span class="meter-pct">94%</span>
+                                    </div>
+                                    <div class="retro-progress-track">
+                                        <div class="retro-progress-fill" style="width: 94%;"></div>
+                                    </div>
+                                </div>
+                                <div class="meter-item">
+                                    <div class="meter-label">
+                                        <span>Client &amp; Partner Coordination</span>
+                                        <span class="meter-pct">90%</span>
+                                    </div>
+                                    <div class="retro-progress-track">
+                                        <div class="retro-progress-fill" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="s-tag">Storytelling</span>
+                                <span class="s-tag">Client Briefing</span>
+                                <span class="s-tag">Brand Voice</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="window-statusbar">
+                <span class="status-section">Total Competencies: 4 Core Areas</span>
+                <span class="status-section">Performance: High</span>
+                <span class="status-section">All Systems Go</span>
+            </div>
+        </div>
+
+        <!-- WINDOW 6: PRACTICAL EXPERIENCE (Page 6) -->
+        <div class="retro-window" id="window-experience" style="top: 130px; left: 200px; width: 650px;">
+            <div class="window-titlebar" id="window-experience-titlebar">
+                <div class="titlebar-text">
+                    <span class="title-icon">💼</span>
+                    <span class="title-title">C:\WORK\Practical_Experience.doc</span>
+                </div>
+                <div class="titlebar-controls">
+                    <button class="win-btn win-btn-min" title="Minimize" aria-label="Minimize">_</button>
+                    <button class="win-btn win-btn-max" title="Maximize" aria-label="Maximize">□</button>
+                    <button class="win-btn win-btn-close" title="Close" aria-label="Close">✕</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span class="menu-item"><u>F</u>ile</span>
+                <span class="menu-item"><u>E</u>xport PDF</span>
+                <span class="menu-item"><u>V</u>erify Org</span>
+            </div>
+            <div class="window-body">
+                <div class="exp-container">
+                    <div class="exp-header-box">
+                        <h2 class="exp-title">ประสบการณ์ทำงาน / PRACTICAL EXPERIENCE</h2>
+                        <div class="exp-badge-row">
+                            <span class="pixel-tag tag-blue">ORGANIZATION: LOCAL GOVERNMENT</span>
+                            <span class="pixel-tag tag-green">YEAR: 2025</span>
+                        </div>
+                    </div>
+
+                    <div class="exp-card-main">
+                        <div class="exp-meta-bar">
+                            <div class="exp-org-icon">🏛️</div>
+                            <div class="exp-org-details">
+                                <h3 class="exp-org-name">เทศบาลตำบลวัดประดู่ จังหวัดสุราษฎร์ธานี</h3>
+                                <div class="exp-pos-tag">
+                                    ตำแหน่ง: <strong>เจ้าหน้าที่ธุรการ (Administrative Staff)</strong>
+                                    <span class="exp-year">(ปี 2025)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="exp-body-section">
+                            <div class="duty-heading">📋 ขอบเขตหน้าที่และความรับผิดชอบหลัก:</div>
+
+                            <div class="duty-list">
+                                <div class="duty-item">
+                                    <div class="duty-icon">📂</div>
+                                    <div class="duty-text">
+                                        <strong>การดำเนินงานทางเอกสารราชการ:</strong>
+                                        <p>รับ-ส่ง จัดทำ ร่าง
+                                            ตรวจสอบความถูกต้องของหนังสือและเอกสารราชการอย่างเป็นระบบตามระเบียบงานสารบรรณ
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="duty-item">
+                                    <div class="duty-icon">📊</div>
+                                    <div class="duty-text">
+                                        <strong>จัดเก็บข้อมูลและบริหารจัดการของส่วนกลาง:</strong>
+                                        <p>รวบรวม บันทึกข้อมูลทะเบียนพัสดุและสิ่งของส่วนกลางลงในระบบฐานข้อมูลคอมพิวเตอร์
+                                            เพื่อความแม่นยำและตรวจสอบได้ทันที</p>
+                                    </div>
+                                </div>
+
+                                <div class="duty-item">
+                                    <div class="duty-icon">🌐</div>
+                                    <div class="duty-text">
+                                        <strong>ดูแลและอัปเดตเว็บไซต์เทศบาล:</strong>
+                                        <p>ช่วยดูแล ตรวจสอบความเรียบร้อย
+                                            และอัปเดตข้อมูลข่าวสารประชาสัมพันธ์บนเว็บไซต์ของเทศบาลตำบลเป็นบางครั้ง</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Key Takeaways / Reflection -->
+                            <div class="retro-quote-box">
+                                <span class="quote-bulb">💡</span>
+                                <em>"ประสบการณ์นี้ทำให้ฉันเข้าใจกระบวนการทำงานที่เป็นระบบ มีความรอบคอบ
+                                    ละเอียดในการจัดการเอกสาร และได้นำความรู้ไอทีไปช่วยสนับสนุนการทำงานในองค์กรจริง"</em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="window-statusbar">
+                <span class="status-section">Organization: Wat Pradu Sub-District Municipality</span>
+                <span class="status-section">Location: Surat Thani</span>
+                <span class="status-section">Status: Completed</span>
+            </div>
+        </div>
+
+        <!-- WINDOW 7: CALL TO ACTION / LET'S WORK TOGETHER (Page 7) -->
+        <div class="retro-window" id="window-contact" style="top: 150px; left: 260px; width: 580px;">
+            <div class="window-titlebar" id="window-contact-titlebar">
+                <div class="titlebar-text">
+                    <span class="title-icon">✉️</span>
+                    <span class="title-title">Direct_Message.exe - Let's Work Together</span>
+                </div>
+                <div class="titlebar-controls">
+                    <button class="win-btn win-btn-min" title="Minimize" aria-label="Minimize">_</button>
+                    <button class="win-btn win-btn-max" title="Maximize" aria-label="Maximize">□</button>
+                    <button class="win-btn win-btn-close" title="Close" aria-label="Close">✕</button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="cta-wrapper">
+                    <div class="cta-header">
+                        <div class="cta-pixel-art">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="4" width="20" height="16" rx="2" fill="#000080" stroke="#000"
+                                    stroke-width="1.5" />
+                                <path d="M2 6L12 13L22 6" stroke="#20c997" stroke-width="2" />
+                                <circle cx="12" cy="13" r="2" fill="#ffe066" />
+                            </svg>
+                        </div>
+                        <div class="cta-titles">
+                            <h2 class="cta-main-title">Let's Work Together</h2>
+                            <p class="cta-sub">Have a campaign in mind? I would love to hear about it.</p>
+                            <div class="cta-brand"><strong>sarisa pattarakamonporn</strong> — Content Creator</div>
+                        </div>
+                    </div>
+
+                    <div class="retro-divider"></div>
+
+                    <!-- Quick interactive contact form -->
+                    <form id="contactForm" class="retro-form" onsubmit="handleContactSubmit(event)">
+                        <div class="form-row">
+                            <label for="senderName" class="form-label">Your Name / Company:</label>
+                            <input type="text" id="senderName" class="retro-input"
+                                placeholder="e.g. Agency Name / Brand Team" required>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="senderEmail" class="form-label">Email Address:</label>
+                            <input type="email" id="senderEmail" class="retro-input"
+                                placeholder="e.g. contact@yourcompany.com" required>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="campaignType" class="form-label">Collaboration Type:</label>
+                            <select id="campaignType" class="retro-select">
+                                <option value="Product Review & Showcase">Product Review &amp; Showcase (Tech /
+                                    Lifestyle / Food)</option>
+                                <option value="Sponsored Post / Reel">Sponsored Video / Reel / Content Series</option>
+                                <option value="Event Invitation & MC">Event Attendance &amp; Creator Coverage</option>
+                                <option value="IT & Web Collaboration">IT / Tech Project Collaboration</option>
+                                <option value="Other">Other Exciting Opportunities</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="campaignMsg" class="form-label">Campaign Message:</label>
+                            <textarea id="campaignMsg" class="retro-textarea" rows="3"
+                                placeholder="Tell me about your vision, schedule, and ideas..."></textarea>
+                        </div>
+
+                        <div class="cta-buttons-row">
+                            <button type="submit" class="win95-btn primary-btn large-cta-btn" id="btn-submit-yes">
+                                <span class="btn-check">✔</span> [Yes] Send Message
+                            </button>
+                            <a href="mailto:panissara9928@gmail.com?subject=Collaboration%20Inquiry%20with%20Sarisa"
+                                class="win95-btn large-cta-btn">
+                                <span>📧</span> Open Email App
+                            </a>
+                            <button type="button" class="win95-btn" onclick="minimizeWindow('window-contact')">
+                                Maybe Later
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Direct info footer -->
+                    <div class="cta-direct-info">
+                        <span>Direct Email: <strong>panissara9928@gmail.com</strong></span>
+                        <span>Tel: <strong>099-313-0523</strong></span>
+                    </div>
+                </div>
+            </div>
+            <div class="window-statusbar">
+                <span class="status-section">Ready to transmit</span>
+                <span class="status-section">Response Time: Within 24 Hours</span>
+            </div>
+        </div>
+
+        <!-- RETRO POPUP DIALOG: Message Sent Alert -->
+        <div class="retro-modal" id="modal-success" style="display: none;">
+            <div class="retro-window modal-window" style="width: 380px;">
+                <div class="window-titlebar">
+                    <div class="titlebar-text">
+                        <span>💾 System Alert</span>
+                    </div>
+                    <div class="titlebar-controls">
+                        <button class="win-btn win-btn-close" onclick="closeSuccessModal()">✕</button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div class="dialog-content">
+                        <div class="dialog-icon-info">ℹ️</div>
+                        <div class="dialog-text">
+                            <h4>Message Sent Successfully!</h4>
+                            <p>ขอบคุณสำหรับข้อความค่ะ สาริศาจะรีบติดต่อกลับโดยเร็วที่สุดนะคะ!</p>
+                            <p><small>Sending copy to: panissara9928@gmail.com</small></p>
+                        </div>
+                    </div>
+                    <div class="dialog-buttons">
+                        <button class="win95-btn primary-btn" onclick="closeSuccessModal()">OK [ตกลง]</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RETRO POPUP DIALOG: About OS / Help -->
+        <div class="retro-modal" id="modal-help" style="display: none;">
+            <div class="retro-window modal-window" style="width: 440px;">
+                <div class="window-titlebar">
+                    <div class="titlebar-text">
+                        <span>ℹ️ About Sarisa OS 98</span>
+                    </div>
+                    <div class="titlebar-controls">
+                        <button class="win-btn win-btn-close" onclick="closeHelpModal()">✕</button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <div class="dialog-content">
+                        <div class="dialog-icon-info">💡</div>
+                        <div class="dialog-text">
+                            <h4>Sarisa Pattarakamonporn Portfolio</h4>
+                            <p>ยินดีต้อนรับสู่เว็บไซต์พอร์ตโฟลิโอรูปแบบ <strong>Retro Tech / Windows 98</strong></p>
+                            <ul style="padding-left: 20px; font-size: 13px; margin: 8px 0;">
+                                <li>ลากหน้าต่าง (Drag Title Bar) เพื่อจัดตำแหน่งได้ตามใจชอบ</li>
+                                <li>คลิกปุ่ม [ _ ], [ □ ], [ ✕ ] เพื่อย่อ/ขยาย/ปิดหน้าต่าง</li>
+                                <li>กดปุ่ม [Start] ที่มุมซ้ายล่าง เพื่อเข้าถึงทุกหน้าได้อย่างรวดเร็ว</li>
+                                <li>เปิด/ปิดเอฟเฟกต์จอแก้ว (CRT Monitor) และเสียงเอฟเฟกต์ 8-bit ได้ที่ System Tray</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dialog-buttons">
+                        <button class="win95-btn primary-btn" onclick="closeHelpModal()">Close [ปิด]</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End #desktop -->
+
+    <!-- RETRO TASKBAR (BOTTOM) -->
+    <footer class="retro-taskbar" id="taskbar">
+        <!-- Start Button -->
+        <button class="start-btn" id="startBtn">
+            <div class="start-flag-icon">
+                <span class="sq sq-red"></span>
+                <span class="sq sq-green"></span>
+                <span class="sq sq-blue"></span>
+                <span class="sq sq-yellow"></span>
+            </div>
+            <span class="start-text">Start</span>
+        </button>
+
+        <!-- Taskbar Running Apps Bar -->
+        <div class="taskbar-apps" id="taskbarApps">
+            <button class="task-tab active" data-target="window-hero" id="tab-window-hero">
+                <span class="tab-icon">💻</span>
+                <span class="tab-text">Portfolio</span>
+            </button>
+            <button class="task-tab" data-target="window-about" id="tab-window-about">
+                <span class="tab-icon">👤</span>
+                <span class="tab-text">About Me</span>
+            </button>
+            <button class="task-tab" data-target="window-education" id="tab-window-education">
+                <span class="tab-icon">🎓</span>
+                <span class="tab-text">Education</span>
+            </button>
+            <button class="task-tab" data-target="window-skills" id="tab-window-skills">
+                <span class="tab-icon">⚙️</span>
+                <span class="tab-text">Skills</span>
+            </button>
+            <button class="task-tab" data-target="window-experience" id="tab-window-experience">
+                <span class="tab-icon">💼</span>
+                <span class="tab-text">Experience</span>
+            </button>
+            <button class="task-tab" data-target="window-contact" id="tab-window-contact">
+                <span class="tab-icon">✉️</span>
+                <span class="tab-text">Contact [Yes]</span>
+            </button>
+        </div>
+
+        <!-- Quick Navigation Bar for Mobile / Small Screens -->
+        <div class="mobile-nav-toggle-btn" id="mobileNavToggle" title="Open Menu">
+            ☰ Pages
+        </div>
+
+        <!-- System Tray (Clock, Sound, CRT, Status) -->
+        <div class="systray">
+            <button class="tray-icon" id="tray-crt" title="Toggle CRT Scanline Effect">
+                <span class="tray-emoji">📺</span>
+            </button>
+            <button class="tray-icon" id="tray-sound" title="Toggle 8-bit Audio Sound">
+                <span class="tray-emoji" id="soundIconEmoji">🔊</span>
+            </button>
+            <div class="systray-divider"></div>
+            <div class="systray-clock" id="clockDisplay">12:00 PM</div>
+        </div>
+    </footer>
+
+    <!-- START MENU POPUP -->
+    <div class="start-menu" id="startMenu" style="display: none;">
+        <div class="start-menu-sidebar">
+            <div class="sidebar-text">SARISA <span>98</span></div>
+        </div>
+        <div class="start-menu-items">
+            <div class="start-item" onclick="openWindow('window-hero'); toggleStartMenu(false);">
+                <span class="start-item-icon">💻</span>
+                <div class="start-item-info">
+                    <strong>Portfolio Overview</strong>
+                    <small>Home, Cover &amp; Quick Intro</small>
+                </div>
+            </div>
+            <div class="start-item" onclick="openWindow('window-about'); toggleStartMenu(false);">
+                <span class="start-item-icon">👤</span>
+                <div class="start-item-info">
+                    <strong>About Sarisa (ประวัติส่วนตัว)</strong>
+                    <small>Bio, Lifestyle &amp; Student Profile</small>
+                </div>
+            </div>
+            <div class="start-item" onclick="openWindow('window-education'); toggleStartMenu(false);">
+                <span class="start-item-icon">🎓</span>
+                <div class="start-item-info">
+                    <strong>Education History (ประวัติการศึกษา)</strong>
+                    <small>SPU Bangkhen, SVC, Thidamaepra</small>
+                </div>
+            </div>
+            <div class="start-item" onclick="openWindow('window-skills'); toggleStartMenu(false);">
+                <span class="start-item-icon">⚙️</span>
+                <div class="start-item-info">
+                    <strong>My Skills (ทักษะความสามารถ)</strong>
+                    <small>Computer, Creative, Teamwork, Comms</small>
+                </div>
+            </div>
+            <div class="start-item" onclick="openWindow('window-experience'); toggleStartMenu(false);">
+                <span class="start-item-icon">💼</span>
+                <div class="start-item-info">
+                    <strong>Practical Experience (ประสบการณ์ทำงาน)</strong>
+                    <small>เทศบาลตำบลวัดประดู่ (2025)</small>
+                </div>
+            </div>
+            <div class="start-item highlight-item" onclick="openWindow('window-contact'); toggleStartMenu(false);">
+                <span class="start-item-icon">✉️</span>
+                <div class="start-item-info">
+                    <strong>Let's Work Together [Yes]</strong>
+                    <small>Campaigns &amp; Collaborations</small>
+                </div>
+            </div>
+
+            <div class="start-menu-divider"></div>
+
+            <div class="start-item" onclick="showHelpModal(); toggleStartMenu(false);">
+                <span class="start-item-icon">❓</span>
+                <div class="start-item-info">
+                    <strong>Help &amp; System Info...</strong>
+                    <small>About this Retro Portfolio</small>
+                </div>
+            </div>
+
+            <div class="start-item" onclick="toggleCRT(); toggleStartMenu(false);">
+                <span class="start-item-icon">📺</span>
+                <div class="start-item-info">
+                    <strong>Toggle CRT Scanlines</strong>
+                    <small>Retro Monitor Phosphor Effect</small>
+                </div>
+            </div>
+
+            <div class="start-menu-divider"></div>
+
+            <div class="start-item" onclick="window.location.reload();">
+                <span class="start-item-icon">🔄</span>
+                <div class="start-item-info">
+                    <strong>Restart Portfolio OS...</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * SARISA PATTARAKAMONPORN - RETRO TECH PORTFOLIO
+         * Window Manager, Sound Synthesizer (Web Audio API), & Interactive OS Features
+         */
+
+        // --- Audio Synthesizer (No external mp3/wav files required!) ---
+        class RetroAudioSynth {
+            constructor() {
+                this.audioCtx = null;
+                this.soundEnabled = true;
+            }
+
+            init() {
+                if (!this.audioCtx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContext) {
+                        this.audioCtx = new AudioContext();
+                    }
+                }
+                if (this.audioCtx && this.audioCtx.state === 'suspended') {
+                    this.audioCtx.resume();
+                }
+            }
+
+            playClick() {
+                if (!this.soundEnabled) return;
+                this.init();
+                if (!this.audioCtx) return;
+
+                try {
+                    const osc = this.audioCtx.createOscillator();
+                    const gain = this.audioCtx.createGain();
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(800, this.audioCtx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(400, this.audioCtx.currentTime + 0.05);
+
+                    gain.gain.setValueAtTime(0.08, this.audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, this.audioCtx.currentTime + 0.05);
+
+                    osc.connect(gain);
+                    gain.connect(this.audioCtx.destination);
+
+                    osc.start();
+                    osc.stop(this.audioCtx.currentTime + 0.05);
+                } catch (e) {
+                    // Audio fallback silent
+                }
+            }
+
+            playWindowOpen() {
+                if (!this.soundEnabled) return;
+                this.init();
+                if (!this.audioCtx) return;
+
+                try {
+                    const now = this.audioCtx.currentTime;
+                    const osc = this.audioCtx.createOscillator();
+                    const gain = this.audioCtx.createGain();
+
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.setValueAtTime(660, now + 0.06);
+                    osc.frequency.setValueAtTime(880, now + 0.12);
+
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+                    osc.connect(gain);
+                    gain.connect(this.audioCtx.destination);
+
+                    osc.start();
+                    osc.stop(now + 0.25);
+                } catch (e) { }
+            }
+
+            playMinimize() {
+                if (!this.soundEnabled) return;
+                this.init();
+                if (!this.audioCtx) return;
+
+                try {
+                    const now = this.audioCtx.currentTime;
+                    const osc = this.audioCtx.createOscillator();
+                    const gain = this.audioCtx.createGain();
+
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(700, now);
+                    osc.frequency.exponentialRampToValueAtTime(280, now + 0.15);
+
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+
+                    osc.connect(gain);
+                    gain.connect(this.audioCtx.destination);
+
+                    osc.start();
+                    osc.stop(now + 0.15);
+                } catch (e) { }
+            }
+
+            playSuccess() {
+                if (!this.soundEnabled) return;
+                this.init();
+                if (!this.audioCtx) return;
+
+                try {
+                    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                    notes.forEach((freq, idx) => {
+                        const osc = this.audioCtx.createOscillator();
+                        const gain = this.audioCtx.createGain();
+                        const startTime = this.audioCtx.currentTime + (idx * 0.08);
+
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, startTime);
+
+                        gain.gain.setValueAtTime(0.1, startTime);
+                        gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.2);
+
+                        osc.connect(gain);
+                        gain.connect(this.audioCtx.destination);
+
+                        osc.start(startTime);
+                        osc.stop(startTime + 0.25);
+                    });
+                } catch (e) { }
+            }
+        }
+
+        const synth = new RetroAudioSynth();
+
+        // --- Window Management ---
+        let highestZ = 200;
+        const windows = document.querySelectorAll('.retro-window');
+        const taskTabs = document.querySelectorAll('.task-tab');
+        const desktopIcons = document.querySelectorAll('.desktop-icon');
+
+        function focusWindow(win) {
+            if (!win) return;
+            highestZ += 2;
+            win.style.zIndex = highestZ;
+
+            windows.forEach(w => w.classList.remove('focused'));
+            win.classList.add('focused');
+
+            // Update taskbar tab
+            const id = win.id;
+            taskTabs.forEach(tab => {
+                if (tab.getAttribute('data-target') === id) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+        }
+
+        function openWindow(winId) {
+            const win = document.getElementById(winId);
+            if (!win) return;
+
+            synth.playWindowOpen();
+            win.style.display = 'flex';
+            win.classList.add('active');
+            focusWindow(win);
+
+            // Update taskbar
+            const tab = document.querySelector(`.task-tab[data-target="${winId}"]`);
+            if (tab) {
+                tab.style.display = 'flex';
+                tab.classList.add('active');
+            }
+        }
+
+        function minimizeWindow(winId) {
+            const win = document.getElementById(winId);
+            if (!win) return;
+
+            synth.playMinimize();
+            win.style.display = 'none';
+            win.classList.remove('active', 'focused');
+
+            const tab = document.querySelector(`.task-tab[data-target="${winId}"]`);
+            if (tab) {
+                tab.classList.remove('active');
+            }
+        }
+
+        function toggleMaximize(win) {
+            synth.playClick();
+            if (win.dataset.maximized === 'true') {
+                // Restore
+                win.style.top = win.dataset.prevTop || '40px';
+                win.style.left = win.dataset.prevLeft || '160px';
+                win.style.width = win.dataset.prevWidth || '620px';
+                win.style.height = win.dataset.prevHeight || 'auto';
+                win.dataset.maximized = 'false';
+            } else {
+                // Maximize
+                win.dataset.prevTop = win.style.top;
+                win.dataset.prevLeft = win.style.left;
+                win.dataset.prevWidth = win.style.width;
+                win.dataset.prevHeight = win.style.height;
+
+                win.style.top = '0px';
+                win.style.left = '0px';
+                win.style.width = '100vw';
+                win.style.height = 'calc(100vh - 38px)';
+                win.dataset.maximized = 'true';
+            }
+            focusWindow(win);
+        }
+
+        // Make windows draggable
+        function initDraggable(win) {
+            const titlebar = win.querySelector('.window-titlebar');
+            if (!titlebar) return;
+
+            let isDragging = false;
+            let startX = 0, startY = 0;
+            let initialLeft = 0, initialTop = 0;
+
+            function onMouseDown(e) {
+                // Ignore clicks on titlebar buttons
+                if (e.target.closest('.win-btn')) return;
+                if (win.dataset.maximized === 'true') return;
+
+                isDragging = true;
+                focusWindow(win);
+
+                startX = e.clientX || (e.touches && e.touches[0].clientX);
+                startY = e.clientY || (e.touches && e.touches[0].clientY);
+
+                const rect = win.getBoundingClientRect();
+                initialLeft = rect.left;
+                initialTop = rect.top;
+
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+                document.addEventListener('touchmove', onTouchMove, { passive: false });
+                document.addEventListener('touchend', onTouchEnd);
+            }
+
+            function onMouseMove(e) {
+                if (!isDragging) return;
+                const currentX = e.clientX;
+                const currentY = e.clientY;
+                const dx = currentX - startX;
+                const dy = currentY - startY;
+
+                let newLeft = initialLeft + dx;
+                let newTop = initialTop + dy;
+
+                // Bounds checking
+                if (newTop < 0) newTop = 0;
+                if (newTop > window.innerHeight - 80) newTop = window.innerHeight - 80;
+
+                win.style.left = `${newLeft}px`;
+                win.style.top = `${newTop}px`;
+            }
+
+            function onTouchMove(e) {
+                if (!isDragging || !e.touches || e.touches.length === 0) return;
+                e.preventDefault();
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const dx = currentX - startX;
+                const dy = currentY - startY;
+
+                let newLeft = initialLeft + dx;
+                let newTop = initialTop + dy;
+
+                if (newTop < 0) newTop = 0;
+                win.style.left = `${newLeft}px`;
+                win.style.top = `${newTop}px`;
+            }
+
+            function onMouseUp() {
+                isDragging = false;
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            }
+
+            function onTouchEnd() {
+                isDragging = false;
+                document.removeEventListener('touchmove', onTouchMove);
+                document.removeEventListener('touchend', onTouchEnd);
+            }
+
+            titlebar.addEventListener('mousedown', onMouseDown);
+            titlebar.addEventListener('touchstart', onMouseDown, { passive: true });
+
+            // Window control buttons
+            const minBtn = win.querySelector('.win-btn-min');
+            const maxBtn = win.querySelector('.win-btn-max');
+            const closeBtn = win.querySelector('.win-btn-close');
+
+            if (minBtn) {
+                minBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    minimizeWindow(win.id);
+                });
+            }
+
+            if (maxBtn) {
+                maxBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleMaximize(win);
+                });
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    minimizeWindow(win.id);
+                });
+            }
+
+            // Bring to front on any click inside window
+            win.addEventListener('mousedown', () => {
+                focusWindow(win);
+            });
+        }
+
+        // Initialize all windows
+        windows.forEach(win => {
+            initDraggable(win);
+        });
+
+        // Focus initial window
+        const heroWin = document.getElementById('window-hero');
+        if (heroWin) {
+            focusWindow(heroWin);
+        }
+
+        // --- Desktop Icons Interaction ---
+        desktopIcons.forEach(icon => {
+            // Single click focus/selection
+            icon.addEventListener('click', () => {
+                synth.playClick();
+                desktopIcons.forEach(i => i.classList.remove('selected'));
+                icon.classList.add('selected');
+            });
+
+            // Double click to open window or special command
+            icon.addEventListener('dblclick', () => {
+                const targetWinId = icon.getAttribute('data-window');
+                if (targetWinId) {
+                    openWindow(targetWinId);
+                }
+            });
+
+            // Touch device support: open on double tap or enter key
+            icon.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const targetWinId = icon.getAttribute('data-window');
+                    if (targetWinId) openWindow(targetWinId);
+                }
+            });
+        });
+
+        // Single click helper on mobile
+        if (window.innerWidth < 820) {
+            desktopIcons.forEach(icon => {
+                icon.addEventListener('click', () => {
+                    const targetWinId = icon.getAttribute('data-window');
+                    if (targetWinId) openWindow(targetWinId);
+                });
+            });
+        }
+
+        // Special icons
+        const crtIcon = document.getElementById('icon-crt-toggle');
+        if (crtIcon) {
+            crtIcon.addEventListener('dblclick', toggleCRT);
+            crtIcon.addEventListener('click', () => {
+                if (window.innerWidth < 820) toggleCRT();
+            });
+        }
+
+        const soundIcon = document.getElementById('icon-sound-toggle');
+        if (soundIcon) {
+            soundIcon.addEventListener('dblclick', toggleSound);
+            soundIcon.addEventListener('click', () => {
+                if (window.innerWidth < 820) toggleSound();
+            });
+        }
+
+        // --- Taskbar Tab Click Handlers ---
+        taskTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                synth.playClick();
+                const targetId = tab.getAttribute('data-target');
+                const targetWin = document.getElementById(targetId);
+
+                if (!targetWin) return;
+
+                if (targetWin.style.display === 'none' || !targetWin.classList.contains('active')) {
+                    openWindow(targetId);
+                } else if (targetWin.classList.contains('focused')) {
+                    minimizeWindow(targetId);
+                } else {
+                    focusWindow(targetWin);
+                }
+            });
+        });
+
+        // --- Start Menu ---
+        const startBtn = document.getElementById('startBtn');
+        const startMenu = document.getElementById('startMenu');
+
+        function toggleStartMenu(forceState) {
+            synth.playClick();
+            const isVisible = startMenu.style.display === 'flex';
+            const newState = typeof forceState === 'boolean' ? forceState : !isVisible;
+
+            startMenu.style.display = newState ? 'flex' : 'none';
+            if (newState) {
+                startBtn.classList.add('active');
+            } else {
+                startBtn.classList.remove('active');
+            }
+        }
+
+        if (startBtn) {
+            startBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleStartMenu();
+            });
+        }
+
+        // Close Start menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!startMenu.contains(e.target) && !startBtn.contains(e.target)) {
+                startMenu.style.display = 'none';
+                startBtn.classList.remove('active');
+            }
+        });
+
+        // Mobile nav menu toggle
+        const mobileNavToggle = document.getElementById('mobileNavToggle');
+        if (mobileNavToggle) {
+            mobileNavToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleStartMenu();
+            });
+        }
+
+        // --- Quick Navigation Buttons inside Windows ---
+        const btnHeroStart = document.getElementById('btn-hero-start');
+        if (btnHeroStart) {
+            btnHeroStart.addEventListener('click', () => {
+                openWindow('window-about');
+            });
+        }
+
+        const btnHeroProfile = document.getElementById('btn-hero-profile');
+        if (btnHeroProfile) {
+            btnHeroProfile.addEventListener('click', () => {
+                openWindow('window-about');
+            });
+        }
+
+        const btnHeroContact = document.getElementById('btn-hero-contact');
+        if (btnHeroContact) {
+            btnHeroContact.addEventListener('click', () => {
+                openWindow('window-contact');
+            });
+        }
+
+        // Help menu in Hero window
+        const menuHelpBtn = document.getElementById('menu-help-btn');
+        if (menuHelpBtn) {
+            menuHelpBtn.addEventListener('click', showHelpModal);
+        }
+
+        // --- Profile Tabs (Thai / English / Contact) ---
+        const profileTabs = document.querySelectorAll('#window-about .menu-item[data-tab]');
+        const profileContents = document.querySelectorAll('.profile-tab-content');
+
+        profileTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                synth.playClick();
+                profileTabs.forEach(t => t.classList.remove('active-tab'));
+                tab.classList.add('active-tab');
+
+                const targetTab = tab.getAttribute('data-tab');
+                profileContents.forEach(c => {
+                    if (c.id === targetTab) {
+                        c.classList.add('active');
+                    } else {
+                        c.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // --- Skills Filter Tabs ---
+        const skillFilters = document.querySelectorAll('#window-skills .menu-item[data-filter]');
+        const skillCards = document.querySelectorAll('.skill-win-card');
+
+        skillFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                synth.playClick();
+                skillFilters.forEach(f => f.classList.remove('active-skill-filter'));
+                filter.classList.add('active-skill-filter');
+
+                const cat = filter.getAttribute('data-filter');
+                skillCards.forEach(card => {
+                    if (cat === 'all' || card.getAttribute('data-category') === cat) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // --- Custom Photo Uploader / Previewer ---
+        const photoInput = document.getElementById('customPhotoInput');
+        const avatarDisplay = document.getElementById('avatarDisplay');
+
+        if (photoInput && avatarDisplay) {
+            photoInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    synth.playSuccess();
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        avatarDisplay.innerHTML = `<img src="${event.target.result}" alt="Sarisa Profile" style="width: 100%; height: 100%; object-fit: cover;">`;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        // --- Contact Form Handling ---
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            synth.playSuccess();
+
+            const name = document.getElementById('senderName').value;
+            const email = document.getElementById('senderEmail').value;
+            const type = document.getElementById('campaignType').value;
+            const msg = document.getElementById('campaignMsg').value;
+
+            console.log('Form Submitted:', { name, email, type, msg });
+
+            // Show Retro Success Alert Modal
+            const modal = document.getElementById('modal-success');
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        }
+
+        function closeSuccessModal() {
+            synth.playClick();
+            const modal = document.getElementById('modal-success');
+            if (modal) modal.style.display = 'none';
+
+            // Optionally reset form
+            const form = document.getElementById('contactForm');
+            if (form) form.reset();
+        }
+
+        function showHelpModal() {
+            synth.playWindowOpen();
+            const modal = document.getElementById('modal-help');
+            if (modal) modal.style.display = 'flex';
+        }
+
+        function closeHelpModal() {
+            synth.playClick();
+            const modal = document.getElementById('modal-help');
+            if (modal) modal.style.display = 'none';
+        }
+
+        // --- System Tray Controls: CRT Scanline & Audio ---
+        const crtOverlay = document.getElementById('crt-overlay');
+        const trayCrtBtn = document.getElementById('tray-crt');
+
+        function toggleCRT() {
+            synth.playClick();
+            if (crtOverlay) {
+                crtOverlay.classList.toggle('active');
+            }
+        }
+
+        if (trayCrtBtn) {
+            trayCrtBtn.addEventListener('click', toggleCRT);
+        }
+
+        const traySoundBtn = document.getElementById('tray-sound');
+        const soundIconEmoji = document.getElementById('soundIconEmoji');
+
+        function toggleSound() {
+            synth.soundEnabled = !synth.soundEnabled;
+            if (soundIconEmoji) {
+                soundIconEmoji.textContent = synth.soundEnabled ? '🔊' : '🔇';
+            }
+            if (synth.soundEnabled) {
+                synth.playClick();
+            }
+        }
+
+        if (traySoundBtn) {
+            traySoundBtn.addEventListener('click', toggleSound);
+        }
+
+        // --- System Clock in Taskbar ---
+        function updateClock() {
+            const clockEl = document.getElementById('clockDisplay');
+            if (!clockEl) return;
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // 0 becomes 12
+            clockEl.textContent = `${hours}:${minutes} ${ampm}`;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // --- Keyboard Shortcut: 'Escape' closes active modal / Start menu ---
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeSuccessModal();
+                closeHelpModal();
+                toggleStartMenu(false);
+            }
+        });
+
+    </script>
+</body>
+
+</html>
